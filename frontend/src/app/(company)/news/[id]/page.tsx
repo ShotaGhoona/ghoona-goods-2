@@ -1,11 +1,12 @@
 import NewsDetail from "@/feature/company/news-detail";
 
 interface NewsDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function NewsDetailPage({ params }: NewsDetailPageProps) {
-  return <NewsDetail newsId={params.id} />;
+export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+  const { id } = await params;
+  return <NewsDetail newsId={id} />;
 }
