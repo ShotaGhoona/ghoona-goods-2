@@ -612,3 +612,330 @@ GhoonaGoodsの各ページにおけるセクション構成を体系的に設計
 2. 返品ポリシー・サイズガイド（サポート強化）
 
 この戦略に基づいて、各ページのデザイン・開発を段階的に進めることで、効率的かつ効果的なWebサイト構築が可能になります。
+
+---
+
+## コーディング規約・開発ルール
+
+### 1. プロジェクト構成規約
+
+#### ディレクトリ構造
+```
+src/
+├── feature/
+│   └── [category]/
+│       └── [page-name]/
+│           ├── index.tsx           # メインページコンポーネント
+│           ├── components/         # ページ固有のコンポーネント
+│           │   ├── [Section]Hero.tsx
+│           │   ├── [Section]Grid.tsx
+│           │   └── [Section]CTA.tsx
+│           └── data/              # ページ固有のデータ・型定義
+│               ├── [page]Data.ts  # データ定義
+│               └── types.ts       # 型定義
+├── components/
+│   ├── common/                    # 共通コンポーネント
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── Hero.tsx              # 再利用可能Heroコンポーネント
+│   └── ui/                       # UIコンポーネント
+└── app/                          # Next.js App Router
+    └── layout.tsx                # ヘッダー・フッターはここで定義
+```
+
+#### ファイル命名規則
+- **コンポーネント**: PascalCase (例: `FAQCategories.tsx`)
+- **ページディレクトリ**: kebab-case (例: `portfolio-detail/`)
+- **データファイル**: camelCase + Data suffix (例: `faqData.ts`)
+- **型定義ファイル**: `types.ts` または対象名 + Types (例: `portfolioTypes.ts`)
+
+### 2. コンポーネント設計規約
+
+#### Header・Footer
+```tsx
+// ❌ 各ページで個別にHeader/Footerを配置しない
+return (
+  <div>
+    <Header />  {/* NG: 個別配置 */}
+    <main>...</main>
+    <Footer />  {/* NG: 個別配置 */}
+  </div>
+)
+
+// ✅ layout.tsxで全体定義済み
+return (
+  <div className="min-h-screen">
+    <main>...</main>  {/* OK: mainのみ記述 */}
+  </div>
+)
+```
+
+#### Hero セクション
+```tsx
+// ✅ 共通Heroコンポーネントを使用
+import Hero from "@/components/common/Hero"
+
+return (
+  <Hero
+    title="よくある"
+    titleHighlight="質問"
+    subtitle="迅速な問題解決をサポート"
+    description="詳細な説明文..."
+    backgroundVariant="default"  // default | primary | secondary | gradient
+    size="medium"                // small | medium | large
+    actions={<CustomButton />}   // オプション: カスタムアクション
+  />
+)
+```
+
+#### セクション分割
+```tsx
+// ✅ セクションごとにコンポーネント分割
+export default function FAQ() {
+  return (
+    <div className="min-h-screen">
+      <main>
+        <Hero {...heroProps} />
+        <FAQCategories {...categoryProps} />
+        <FAQContact />
+      </main>
+    </div>
+  )
+}
+```
+
+### 3. データ管理規約
+
+#### データ配置規則
+```
+feature/support/faq/
+├── index.tsx
+├── components/
+└── data/
+    ├── faqData.ts      # データ定義
+    └── types.ts        # 型定義
+```
+
+#### データ定義例
+```typescript
+// data/faqData.ts
+export interface FAQItem {
+  id: string
+  question: string
+  answer: string
+  category: string
+  tags: string[]
+}
+
+export const faqData: FAQItem[] = [
+  {
+    id: "faq-001",
+    question: "最小注文数量は？",
+    answer: "商品により異なりますが...",
+    category: "order",
+    tags: ["注文", "数量"]
+  }
+]
+
+// 関連する関数も同ファイルに定義
+export function searchFAQs(query: string): FAQItem[] {
+  return faqData.filter(item => 
+    item.question.includes(query) || 
+    item.answer.includes(query)
+  )
+}
+```
+
+### 4. アセット・リソース規約
+
+#### 画像・ロゴ
+```tsx
+// ✅ 共通ロゴはpublic/logo.pngを使用
+<img src="/logo.png" alt="Ghoona Goods" />
+
+// ✅ 商品画像はpublic/images/products/に配置
+<img src="/images/products/badge-sample.jpg" alt="缶バッジサンプル" />
+```
+
+#### アイコン・イラスト
+```tsx
+// ✅ React Iconsライブラリを使用（推奨）
+import { FaSearch, FaPhone, FaBuilding, FaEnvelope, FaShield } from 'react-icons/fa'
+import { MdSecurity, MdPolicy, MdGavel } from 'react-icons/md'
+import { IoMdSettings, IoMdCall } from 'react-icons/io'
+
+// ✅ アイコンの使用例
+<FaBuilding className="w-6 h-6 text-primary" />
+<MdSecurity className="w-5 h-5 text-blue-600" />
+
+// ❌ 絵文字アイコンは避ける（一貫性・アクセシビリティの観点から）
+// const icon = "🎨"  // 使用しない
+// const icon = "⚡"  // 使用しない
+// const icon = "🏆"  // 使用しない
+```
+
+### 5. スタイリング規約
+
+#### Tailwind CSS クラス命名
+```tsx
+// ✅ 推奨パターン
+<div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+  <section className="py-20 px-6">
+    <div className="container mx-auto max-w-6xl">
+      <h2 className="text-4xl font-light text-foreground mb-6">
+        タイトル<span className="font-bold text-primary">ハイライト</span>
+      </h2>
+    </div>
+  </section>
+</div>
+```
+
+#### グラデーション・装飾パターン
+```tsx
+// ✅ 統一されたグラデーション使用
+backgroundVariant: {
+  default: "from-primary/5 via-background to-secondary/5",
+  primary: "from-primary/20 via-primary/10 to-primary/5",
+  secondary: "from-secondary/20 via-secondary/10 to-secondary/5",
+  gradient: "from-primary/10 via-purple-500/5 to-pink-500/10"
+}
+
+// ✅ 統一されたアニメーション
+<div className="transition-all duration-1000 hover:scale-105 hover:-translate-y-2">
+```
+
+### 6. TypeScript 規約
+
+#### Props インターface
+```typescript
+// ✅ Props型定義の統一パターン
+interface ComponentNameProps {
+  // 必須プロパティ
+  title: string
+  data: DataType[]
+  
+  // オプショナルプロパティ
+  subtitle?: string
+  className?: string
+  
+  // 関数プロパティ
+  onAction?: (id: string) => void
+  
+  // バリアント型
+  variant?: 'default' | 'primary' | 'secondary'
+}
+```
+
+#### 状態管理
+```typescript
+// ✅ 状態管理の統一パターン
+export default function ComponentName() {
+  const [selectedItem, setSelectedItem] = useState<string | null>(null)
+  const [searchResults, setSearchResults] = useState<ItemType[]>(initialData)
+  const [isVisible, setIsVisible] = useState(false)
+  
+  // useEffect での初期化
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100)
+    return () => clearTimeout(timer)
+  }, [])
+}
+```
+
+### 7. パフォーマンス規約
+
+#### 画像最適化
+```tsx
+// ✅ Next.js Image コンポーネント使用
+import Image from 'next/image'
+
+<Image
+  src="/images/product.jpg"
+  alt="商品画像"
+  width={800}
+  height={600}
+  className="rounded-xl"
+/>
+```
+
+#### コンポーネント最適化
+```typescript
+// ✅ memo による最適化
+import { memo } from 'react'
+
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }: Props) {
+  return <div>{/* レンダリング処理 */}</div>
+})
+```
+
+### 8. アクセシビリティ規約
+
+#### セマンティックHTML
+```tsx
+// ✅ 適切なセマンティック要素使用
+<main>
+  <section aria-labelledby="hero-title">
+    <h1 id="hero-title">ページタイトル</h1>
+  </section>
+  
+  <nav aria-label="カテゴリー選択">
+    <ul>
+      <li><button>カテゴリー1</button></li>
+    </ul>
+  </nav>
+</main>
+```
+
+#### キーボード操作対応
+```tsx
+// ✅ キーボード操作の実装
+<button
+  onClick={handleClick}
+  onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+  className="focus:outline-none focus:ring-2 focus:ring-primary"
+>
+  ボタン
+</button>
+```
+
+### 9. 開発フロー規約
+
+#### 1. ページ作成手順
+1. `feature/[category]/[page-name]/` ディレクトリ作成
+2. `data/` ディレクトリでデータ・型定義
+3. `components/` ディレクトリでセクション別コンポーネント作成
+4. `index.tsx` でメインページ組み立て
+5. Hero コンポーネントは共通版を使用
+
+#### 2. URLルーティング注意事項 ⚠️
+
+**重要**: Next.js App Routerでのディレクトリ構造とURLの対応関係
+
+```
+ファイルシステム                    → URL
+src/app/(company)/testimonials/     → /testimonials
+src/app/(support)/faq/             → /faq
+src/app/(legal)/privacy/           → /privacy
+```
+
+**❌ よくある間違い**:
+```tsx
+// 間違い - categoryを含めてしまう
+<a href="/company/testimonials">お客様の声</a>
+<a href="/support/faq">FAQ</a>
+<a href="/legal/privacy">プライバシーポリシー</a>
+```
+
+**✅ 正しいリンク記述**:
+```tsx
+// 正しい - categoryは含めない
+<a href="/testimonials">お客様の声</a>
+<a href="/faq">FAQ</a>
+<a href="/privacy">プライバシーポリシー</a>
+```
+
+**理由**: 
+- `(company)`, `(support)`, `(legal)` は**ルートグループ**
+- 括弧で囲まれたディレクトリはURLに含まれない
+- ファイル整理のためのグループ化のみの役割
+

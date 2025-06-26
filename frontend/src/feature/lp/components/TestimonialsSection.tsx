@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { FaStar, FaQuoteLeft, FaCheckCircle } from 'react-icons/fa'
+import { featuredTestimonials } from '@/feature/company/testimonials/data/testimonialsData'
 
 export default function TestimonialsSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -25,29 +27,14 @@ export default function TestimonialsSection() {
     return () => observer.disconnect()
   }, [])
 
-  const testimonials = [
-    {
-      name: "田中 美咲",
-      company: "イベント企画会社",
-      role: "代表取締役",
-      content: "品質の高さに驚きました。細かいデザインも鮮明に再現され、お客様からも大変好評をいただいています。リピート注文は間違いなくお願いします。",
-      rating: 5
-    },
-    {
-      name: "佐藤 健太",
-      company: "アニメ制作会社",
-      role: "グッズ企画担当",
-      content: "小ロットから対応していただき、テスト販売から本格展開まで一貫してサポートしていただきました。品質管理も徹底されており安心です。",
-      rating: 5
-    },
-    {
-      name: "山田 花子",
-      company: "同人サークル",
-      role: "サークル代表",
-      content: "個人での注文でしたが、丁寧に対応していただきました。仕上がりのクオリティが想像以上で、次回のイベントでもお願いしたいと思います。",
-      rating: 5
-    }
-  ]
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <FaStar 
+        key={i} 
+        className={`w-4 h-4 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} 
+      />
+    ))
+  }
 
   return (
     <section 
@@ -56,52 +43,114 @@ export default function TestimonialsSection() {
     >
       <div className="container mx-auto max-w-6xl">
         <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center">
+              <FaQuoteLeft className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <h2 className="text-5xl md:text-6xl font-light text-foreground mb-6">
             お客様の<span className="font-bold text-primary">声</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto font-light leading-relaxed">
-            信頼いただいているお客様からの貴重なお声をご紹介します。
+            127名のお客様からいただいた信頼の証。私たちの誇りです。
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {featuredTestimonials.map((testimonial, index) => (
             <div 
-              key={index}
-              className={`bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/20 transition-all duration-1000 hover:shadow-lg hover:shadow-primary/5 ${
+              key={testimonial.id}
+              className={`bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-sm rounded-3xl p-8 border border-border/30 transition-all duration-1000 hover:shadow-2xl hover:scale-105 group ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 200 + 300}ms` }}
             >
-              {/* 星評価 */}
-              <div className="flex space-x-1 mb-6">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <div key={i} className="w-5 h-5 text-primary">★</div>
-                ))}
+              {/* ヘッダー */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-1">
+                  {renderStars(testimonial.rating)}
+                </div>
+                
+                {testimonial.isVerified && (
+                  <div className="flex items-center space-x-1 bg-green-100/50 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                    <FaCheckCircle className="w-3 h-3" />
+                    <span>認証済み</span>
+                  </div>
+                )}
+              </div>
+
+              {/* 商品タグ */}
+              <div className="mb-6">
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                  {testimonial.product}
+                </span>
               </div>
 
               {/* レビュー内容 */}
-              <p className="text-foreground/80 leading-relaxed mb-8 font-light">
-                &ldquo;{testimonial.content}&rdquo;
-              </p>
+              <div className="mb-6">
+                <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <FaQuoteLeft className="w-4 h-4 text-primary" />
+                </div>
+                <p className="text-foreground/80 leading-relaxed font-medium text-sm">
+                  {testimonial.testimonialText}
+                </p>
+              </div>
+
+              {/* ハイライト */}
+              <div className="mb-6">
+                <h4 className="text-xs font-bold text-foreground/60 mb-2">特に評価された点</h4>
+                <div className="space-y-1">
+                  {testimonial.highlights.slice(0, 2).map((highlight, idx) => (
+                    <div key={idx} className="flex items-center text-xs text-foreground/70">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 flex-shrink-0"></div>
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* お客様情報 */}
               <div className="border-t border-border/20 pt-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
-                    <span className="text-primary font-medium text-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center">
+                    <span className="text-primary font-medium text-sm">
                       {testimonial.name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-foreground/60">{testimonial.company}</p>
-                    <p className="text-xs text-foreground/50">{testimonial.role}</p>
+                    <p className="font-semibold text-foreground text-sm">{testimonial.name}</p>
+                    <p className="text-xs text-foreground/60">{testimonial.position}</p>
+                    <p className="text-xs font-medium text-primary">{testimonial.company}</p>
                   </div>
+                </div>
+                
+                {/* メタ情報 */}
+                <div className="mt-3 text-xs text-foreground/50">
+                  {testimonial.location} • {testimonial.date}
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* もっと見るリンク */}
+        <div className={`text-center mt-16 transition-all duration-1000 delay-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <a
+            href="/testimonials"
+            className="inline-flex items-center px-8 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-xl font-semibold transition-all duration-300 hover:scale-105 group"
+          >
+            すべてのお客様の声を見る
+            <svg 
+              className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
