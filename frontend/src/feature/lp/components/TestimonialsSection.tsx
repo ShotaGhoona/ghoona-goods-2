@@ -82,7 +82,7 @@ export default function TestimonialsSection() {
 
               {/* レビュー内容 */}
               <p className="text-foreground/80 leading-relaxed mb-8 font-light">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
 
               {/* お客様情報 */}

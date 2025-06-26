@@ -14,7 +14,6 @@ import type {
   ViewUpdateRequest,
   ViewUpdateResponse,
   NewsStats,
-  PaginationMeta
 } from '@/types/news';
 
 export class NewsService extends BaseService {

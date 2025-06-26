@@ -6,7 +6,7 @@ export class ApiError extends Error {
   constructor(
     message: string,
     public status?: number,
-    public response?: any
+    public response?: unknown
   ) {
     super(message);
     this.name = 'ApiError';
@@ -67,9 +67,9 @@ export class BaseService {
     }
   }
 
-  protected buildQueryString(params: Record<string, any>): string {
+  protected buildQueryString(params: Record<string, unknown>): string {
     const filteredParams = Object.entries(params)
-      .filter(([_, value]) => value !== undefined && value !== null && value !== '')
+      .filter(([, value]) => value !== undefined && value !== null && value !== '')
       .map(([key, value]) => [key, String(value)]);
     
     if (filteredParams.length === 0) {
@@ -80,19 +80,19 @@ export class BaseService {
     return `?${searchParams.toString()}`;
   }
 
-  protected async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+  protected async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
     const queryString = params ? this.buildQueryString(params) : '';
     return this.request<T>(`${endpoint}${queryString}`);
   }
 
-  protected async post<T>(endpoint: string, data?: any): Promise<T> {
+  protected async post<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'POST',
       body: data ? JSON.stringify(data) : undefined,
     });
   }
 
-  protected async put<T>(endpoint: string, data?: any): Promise<T> {
+  protected async put<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'PUT',
       body: data ? JSON.stringify(data) : undefined,

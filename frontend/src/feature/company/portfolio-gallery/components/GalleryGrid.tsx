@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import Image from "next/image"
 import { usePortfolios } from "@/hooks/usePortfolio"
 import { Portfolio, PortfolioFilterParams } from "@/types/portfolio"
 
@@ -36,11 +35,6 @@ export default function GalleryGrid({
 
   const { portfolios, loading, error, refetch } = usePortfolios(filters)
 
-  // Helper function to get thumbnail image
-  const getThumbnailImage = (portfolio: Portfolio): string => {
-    // For now, return a placeholder. In the future, this would use portfolio.images
-    return "/api/placeholder/400/300"
-  }
 
   // Helper function to get category display name
   const getCategoryDisplayName = (category: string): string => {

@@ -9,7 +9,6 @@ import {
   NewsDetail,
   NewsFilterParams,
   CategoryFilterResponse,
-  YearFilterResponse,
   NewsStats,
   PaginationMeta,
   ViewUpdateRequest,

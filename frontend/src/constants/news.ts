@@ -200,7 +200,7 @@ export const NEWS_VALIDATION = {
 
 // Type guards
 export const isValidCategory = (category: string): boolean => {
-  return Object.values(NEWS_CATEGORIES).includes(category as any);
+  return Object.values(NEWS_CATEGORIES).includes(category as keyof typeof NEWS_CATEGORIES);
 };
 
 export const isValidSortBy = (sortBy: string): boolean => {

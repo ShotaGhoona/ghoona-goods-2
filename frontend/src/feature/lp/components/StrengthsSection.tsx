@@ -132,7 +132,7 @@ export default function StrengthsSection() {
 
         {/* Strengths Grid - Completely Redesigned */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:gap-10">
-          {strengths.map((strength, index) => (
+          {strengths.map((strength) => (
             <div
               key={strength.id}
               className={`group transition-all duration-1000 ${
