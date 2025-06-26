@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Header from "@/components/common/Header"
-import Footer from "@/components/common/Footer"
-import FAQHero from "./components/FAQHero"
+import Hero from "@/components/common/Hero"
 import FAQCategories from "./components/FAQCategories"
 import FAQContact from "./components/FAQContact"
 import { faqCategories, faqData, searchFAQs, FAQItem } from "./data/faqData"
@@ -30,11 +28,16 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen">
-      <Header />
-      
       <main>
         {/* ヒーローセクション */}
-        <FAQHero onSearch={handleSearch} />
+        <Hero
+          title="よくある"
+          titleHighlight="質問"
+          subtitle="迅速な問題解決をサポート"
+          description="お客様からよくお寄せいただくご質問にお答えします。安心してご利用いただけるよう、分かりやすく説明いたします。"
+          backgroundVariant="default"
+          size="medium"
+        />
         
         {/* カテゴリー別FAQ */}
         <FAQCategories
@@ -42,13 +45,12 @@ export default function FAQ() {
           faqs={searchResults}
           selectedCategory={selectedCategory}
           onCategorySelect={handleCategorySelect}
+          onSearch={handleSearch}
         />
         
         {/* お問い合わせ誘導 */}
         <FAQContact />
       </main>
-      
-      <Footer />
     </div>
   )
 }

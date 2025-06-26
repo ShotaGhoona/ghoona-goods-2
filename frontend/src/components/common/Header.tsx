@@ -35,7 +35,7 @@ export default function RefinedHeader() {
         </Link>
 
         {/* エレガントなナビゲーション */}
-        <nav className="hidden md:flex items-center space-x-8">
+        {/* <nav className="hidden md:flex items-center space-x-8">
           {[
             { name: "商品一覧", href: "#products" },
             { name: "私たちについて", href: "#about" },
@@ -51,7 +51,7 @@ export default function RefinedHeader() {
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></div>
             </Link>
           ))}
-        </nav>
+        </nav> */}
 
         {/* 洗練されたアクションボタン */}
         <div className="flex items-center space-x-3">

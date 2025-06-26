@@ -10,11 +10,6 @@ export default function FAQContact() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             解決しない場合は<span className="text-primary">お気軽にお問い合わせください</span>
           </h2>
-          <p className="text-xl text-foreground/70 mb-12 leading-relaxed">
-            FAQで解決できなかった疑問や、より詳細な技術相談は<br />
-            専門スタッフが丁寧にサポートいたします
-          </p>
-
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* 専門スタッフ相談 */}
             <div className="bg-background/60 backdrop-blur-sm rounded-2xl p-8 border border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
@@ -84,39 +79,6 @@ export default function FAQContact() {
                 </svg>
                 今すぐ電話
               </a>
-            </div>
-          </div>
-
-          {/* 追加サポート情報 */}
-          <div className="bg-card/30 backdrop-blur-sm rounded-2xl p-8 border border-border/20">
-            <h3 className="text-xl font-semibold text-foreground mb-4">その他のサポート情報</h3>
-            <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div>
-                <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  技術資料・ガイド
-                </h4>
-                <ul className="space-y-2 text-foreground/60">
-                  <li>• <Link href="/support/data-guide" className="hover:text-primary transition-colors">データ入稿ガイド</Link></li>
-                  <li>• <Link href="/support/manufacturing-guide" className="hover:text-primary transition-colors">製造工程ガイド</Link></li>
-                  <li>• <Link href="/legal/size-guide" className="hover:text-primary transition-colors">サイズ・仕様ガイド</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  ポリシー・規約
-                </h4>
-                <ul className="space-y-2 text-foreground/60">
-                  <li>• <Link href="/support/return-policy" className="hover:text-secondary transition-colors">返品・交換ポリシー</Link></li>
-                  <li>• <Link href="/legal/privacy" className="hover:text-secondary transition-colors">プライバシーポリシー</Link></li>
-                  <li>• <Link href="/legal/terms" className="hover:text-secondary transition-colors">利用規約</Link></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>

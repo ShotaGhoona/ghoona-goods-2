@@ -8,14 +8,23 @@ interface FAQCategoriesProps {
   faqs: FAQItem[];
   selectedCategory: string | null;
   onCategorySelect: (categoryId: string | null) => void;
+  onSearch: (query: string) => void;
 }
 
 export default function FAQCategories({ 
   categories, 
   faqs, 
   selectedCategory, 
-  onCategorySelect 
+  onCategorySelect,
+  onSearch
 }: FAQCategoriesProps) {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSearch(searchQuery)
+  }
+
   const [expandedItems, setExpandedItems] = useState<string[]>([])
 
   const toggleExpanded = (id: string) => {
@@ -40,7 +49,29 @@ export default function FAQCategories({
         <div className="max-w-6xl mx-auto">
           {/* カテゴリー選択 */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-8">カテゴリー別FAQ</h2>
+            {/* 検索フォーム */}
+            <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-12">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="キーワードを入力して検索..."
+                  className="w-full px-6 py-4 pl-14 text-lg border border-border/30 rounded-2xl bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
+                />
+                <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
+                  <svg className="w-6 h-6 text-foreground/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors duration-300"
+                >
+                  検索
+                </button>
+              </div>
+            </form>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <button
                 onClick={() => onCategorySelect(null)}
@@ -70,14 +101,6 @@ export default function FAQCategories({
                 )
               })}
             </div>
-            
-            {selectedCategory && (
-              <div className="bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-border/20 max-w-2xl mx-auto">
-                <p className="text-foreground/70">
-                  {categories.find(cat => cat.id === selectedCategory)?.description}
-                </p>
-              </div>
-            )}
           </div>
 
           {/* FAQ一覧 */}

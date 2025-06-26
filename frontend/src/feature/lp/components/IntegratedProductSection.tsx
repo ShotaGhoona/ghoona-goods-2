@@ -184,54 +184,60 @@ export default function IntegratedProductSection() {
           </div>
         </div>
 
-        {/* 商品選択タブ - Completely Redesigned */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* 商品選択タブ - Simple Grid Design */}
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {Object.entries(products).map(([key, product], index) => (
             <button
               key={key}
               onClick={() => setSelectedProduct(key)}
-              className={`group relative p-8 rounded-3xl border-3 transition-all duration-700 transform ${
+              className={`group relative overflow-hidden bg-gradient-to-br backdrop-blur-xl border-2 rounded-[2rem] p-8 transition-all duration-700 cursor-pointer ${
                 selectedProduct === key
-                  ? 'border-primary bg-gradient-to-br from-primary/20 via-primary/10 to-transparent shadow-2xl shadow-primary/30 scale-110 -translate-y-2'
-                  : 'border-border/20 bg-gradient-to-br from-card/30 to-card/10 hover:border-primary/40 hover:bg-gradient-to-br hover:from-primary/10 hover:to-primary/5 hover:scale-105 hover:-translate-y-1'
-              } backdrop-blur-sm cursor-pointer overflow-hidden`}
+                  ? 'from-primary/20 via-primary/10 to-primary/5 border-primary/40 shadow-xl shadow-primary/20 -translate-y-2'
+                  : 'from-card/30 via-card/20 to-card/10 border-border/20 hover:border-primary/30 hover:from-primary/10 hover:to-primary/5 hover:-translate-y-1'
+              }`}
               style={{
                 transitionDelay: `${index * 100}ms`
               }}
             >
               {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white rounded-full transform translate-x-10 -translate-y-10"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white rounded-full transform -translate-x-8 translate-y-8"></div>
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white rounded-full transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-700"></div>
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white rounded-full transform -translate-x-8 translate-y-8 group-hover:-translate-x-6 group-hover:translate-y-6 transition-transform duration-700"></div>
               </div>
 
-              <div className="relative text-center">
-                <div className={`text-5xl mb-4 transition-all duration-500 ${
-                  selectedProduct === key ? 'scale-125 rotate-6' : 'group-hover:scale-110 group-hover:rotate-3'
+              {/* Icon */}
+              <div className="relative mb-6 flex justify-center">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl transition-all duration-500 ${
+                  selectedProduct === key 
+                    ? 'bg-primary/20 scale-110' 
+                    : 'bg-white/20 group-hover:bg-primary/10 group-hover:scale-105'
                 }`}>
                   {key === 'original-badge' && '🎨'}
                   {key === 'standard-badge' && '⚡'}
                   {key === 'acrylic-stand' && '🌆'}
                   {key === 'acrylic-keychain' && '🔑'}
                 </div>
-                
-                <h3 className={`text-xl font-bold mb-3 transition-all duration-300 ${
-                  selectedProduct === key ? 'text-primary scale-105' : 'text-foreground group-hover:text-primary/80'
+              </div>
+
+              {/* Content */}
+              <div className="relative space-y-4 text-center">
+                <h3 className={`text-lg font-bold transition-all duration-300 ${
+                  selectedProduct === key ? 'text-primary' : 'text-foreground group-hover:text-primary/80'
                 }`}>
                   {product.name}
                 </h3>
                 
-                <p className={`text-sm font-medium transition-all duration-300 leading-relaxed ${
+                <p className={`text-sm leading-relaxed transition-all duration-300 ${
                   selectedProduct === key ? 'text-foreground/90' : 'text-foreground/70 group-hover:text-foreground/80'
                 }`}>
                   {product.subtitle}
                 </p>
 
-                {/* Price Preview */}
-                <div className={`mt-4 px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
+                {/* Price */}
+                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${
                   selectedProduct === key 
                     ? 'bg-primary/20 text-primary border border-primary/30' 
-                    : 'bg-gray-100/50 text-gray-600 group-hover:bg-primary/10 group-hover:text-primary/80'
+                    : 'bg-white/20 text-foreground/80 group-hover:bg-primary/10 group-hover:text-primary/80'
                 }`}>
                   {product.priceRange}
                 </div>
@@ -239,21 +245,21 @@ export default function IntegratedProductSection() {
 
               {/* Active Indicator */}
               {selectedProduct === key && (
-                <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                  <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  </div>
-                </div>
+                <div className="absolute top-3 right-3 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
               )}
 
-              {/* Glow Effect */}
-              <div className={`absolute inset-0 rounded-3xl transition-all duration-700 ${
-                selectedProduct === key ? 'bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5' : 'opacity-0 group-hover:opacity-100 group-hover:bg-gradient-to-r group-hover:from-primary/3 group-hover:via-primary/5 group-hover:to-primary/3'
-              }`}></div>
+              {/* Interactive Bottom Element */}
+              <div className="relative mt-6 flex justify-center">
+                <div className={`h-1 bg-gradient-to-r from-white/40 via-white/60 to-white/40 rounded-full transition-all duration-700 ${
+                  selectedProduct === key ? 'w-16' : 'w-8 group-hover:w-12'
+                }`}></div>
+              </div>
 
-              {/* Bottom Accent */}
-              <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-2 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full transition-all duration-500 ${
-                selectedProduct === key ? 'w-3/4 opacity-100' : 'w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-60'
+              {/* Hover Glow Effect */}
+              <div className={`absolute inset-0 rounded-[2rem] transition-opacity duration-700 ${
+                selectedProduct === key 
+                  ? 'opacity-100 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5' 
+                  : 'opacity-0 group-hover:opacity-100 group-hover:bg-gradient-to-r group-hover:from-white/5 group-hover:via-white/10 group-hover:to-white/5'
               }`}></div>
             </button>
           ))}

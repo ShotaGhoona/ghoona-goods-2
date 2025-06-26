@@ -52,12 +52,12 @@ export default function RefinedHeroSection() {
       </div>
 
       {/* メインコンテンツ */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6">
         <div className={`transition-all duration-1000 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-light text-foreground mb-8 leading-tight tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-light text-foreground mb-8 leading-tight tracking-tight">
             そのアイディア
             <br />
-            <span className="font-bold text-primary">形にします。</span>
+            <span className="font-bold text-primary">形にします</span>
           </h1>
         </div>
         
