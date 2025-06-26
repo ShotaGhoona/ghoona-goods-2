@@ -141,7 +141,7 @@ export default function TestimonialFilter({
             
             {searchQuery && (
               <div className="flex items-center space-x-2 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">
-                <span>検索: "{searchQuery}"</span>
+                <span>検索: &ldquo;{searchQuery}&rdquo;</span>
                 <button
                   onClick={() => onSearchChange('')}
                   className="hover:text-secondary/80 transition-colors duration-200"

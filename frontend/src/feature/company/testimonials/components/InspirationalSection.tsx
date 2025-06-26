@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { FaHeart, FaQuoteLeft, FaQuoteRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { inspiringQuotes } from "../data/testimonialsData"
 
@@ -155,18 +156,18 @@ export default function InspirationalSection() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/support/contact"
+                <Link
+                  href="/contact"
                   className="px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   お問い合わせ
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/portfolio"
                   className="px-8 py-3 bg-white/80 hover:bg-white text-primary border border-primary/30 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
                 >
                   制作実績を見る
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { FaStar, FaChartBar, FaHeart, FaUsers, FaTrophy } from 'react-icons/fa'
 import { TestimonialStats as StatsType, testimonialCategoryLabels } from "../data/testimonialsData"
 
@@ -16,28 +16,7 @@ export default function TestimonialStats({ stats }: TestimonialStatsProps) {
     satisfactionRate: 0
   })
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            animateNumbers()
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    const element = document.getElementById('testimonial-stats')
-    if (element) {
-      observer.observe(element)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const animateNumbers = () => {
+  const animateNumbers = useCallback(() => {
     const duration = 2000
     const steps = 60
     const stepDuration = duration / steps
@@ -62,7 +41,28 @@ export default function TestimonialStats({ stats }: TestimonialStatsProps) {
         })
       }
     }, stepDuration)
-  }
+  }, [stats])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            animateNumbers()
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    const element = document.getElementById('testimonial-stats')
+    if (element) {
+      observer.observe(element)
+    }
+
+    return () => observer.disconnect()
+  }, [animateNumbers])
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating)
@@ -233,8 +233,8 @@ export default function TestimonialStats({ stats }: TestimonialStatsProps) {
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl border border-primary/20 p-8 max-w-4xl mx-auto">
             <p className="text-lg text-foreground/80 leading-relaxed font-medium">
-              "お客様の声は私たちの財産です。一つひとつのご意見を大切に、
-              <span className="text-primary font-bold">さらなる品質向上</span>に努めています。"
+              &ldquo;お客様の声は私たちの財産です。一つひとつのご意見を大切に、
+              <span className="text-primary font-bold">さらなる品質向上</span>に努めています。&rdquo;
             </p>
             <div className="mt-4 text-primary font-semibold">
               - GhoonaGoods 品質管理部門一同

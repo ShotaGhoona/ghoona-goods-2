@@ -99,7 +99,7 @@ export default function TestimonialCard({ testimonial, index, featured = false }
           <p className={`text-foreground/80 leading-relaxed font-medium ${
             featured ? 'text-lg' : 'text-base'
           }`}>
-            "{testimonial.testimonialText}"
+            &ldquo;{testimonial.testimonialText}&rdquo;
           </p>
         </div>
 

@@ -3,8 +3,7 @@
 import Hero from "@/components/common/Hero"
 import LawSection from "./components/LawSection"
 import LawTableOfContents from "./components/LawTableOfContents"
-import { FaBalanceScale } from 'react-icons/fa'
-import { specialCommercialLawData, lastUpdated } from "./data/lawData"
+import { specialCommercialLawData } from "./data/lawData"
 
 export default function SpecialCommercialLaw() {
   return (

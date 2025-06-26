@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { FaHome, FaSearch, FaCog, FaQuestionCircle, FaRocket, FaArrowLeft } from 'react-icons/fa'
+import { FaHome, FaCog, FaQuestionCircle, FaRocket } from 'react-icons/fa'
 import { MdEngineering, MdBuild } from 'react-icons/md'
 
 export default function NotFound() {
@@ -30,7 +30,7 @@ export default function NotFound() {
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [errorMessages.length])
 
   useEffect(() => {
     // パーティクルアニメーション用の要素を動的に生成
