@@ -4,6 +4,7 @@ Application configuration module.
 from pydantic_settings import BaseSettings
 from typing import List
 import os
+import json
 
 
 class Settings(BaseSettings):
@@ -31,13 +32,25 @@ class Settings(BaseSettings):
     clerk_secret_key: str = ""
     clerk_issuer: str = "https://clerk.dev"
     
-    # CORS Configuration
+    # CORS Configuration - can be overridden by environment variable
     cors_origins: List[str] = [
         "http://localhost:3000",      # frontend
         "http://localhost:3001",      # frontend-admin
         "http://127.0.0.1:3000",      # frontend (IPv4)
         "http://127.0.0.1:3001",      # frontend-admin (IPv4)
+        "https://ghoona-goods-2.vercel.app",  # production frontend
     ]
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Override CORS origins from environment if provided
+        cors_env = os.getenv("CORS_ORIGINS")
+        if cors_env:
+            try:
+                self.cors_origins = json.loads(cors_env)
+            except json.JSONDecodeError:
+                # If not valid JSON, treat as comma-separated string
+                self.cors_origins = [origin.strip() for origin in cors_env.split(",")]
     
     # Environment
     environment: str = "development"
