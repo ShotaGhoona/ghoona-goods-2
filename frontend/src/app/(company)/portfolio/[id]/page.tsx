@@ -1,5 +1,12 @@
 import GalleryDetail from "@/feature/company/portfolio-detail";
 
-export default function GalleryDetailPage({ params }: { params: { id: string } }) {
-  return <GalleryDetail id={params.id} />;
+interface GalleryDetailPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function GalleryDetailPage({ params }: GalleryDetailPageProps) {
+  const { id } = await params;
+  return <GalleryDetail id={id} />;
 }
