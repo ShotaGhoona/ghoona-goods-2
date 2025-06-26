@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
 import NewsHero from "./components/NewsHero";
 import NewsFilter from "./components/NewsFilter";
 import NewsGrid from "./components/NewsGrid";
@@ -14,7 +12,6 @@ export default function NewsGallery() {
 
   return (
     <div className="min-h-screen">
-      <Header />
       <NewsHero />
       <NewsFilter 
         selectedCategory={selectedCategory}
@@ -29,7 +26,6 @@ export default function NewsGallery() {
         selectedYear={selectedYear}
         searchTerm={searchTerm}
       />
-      <Footer />
     </div>
   );
 }

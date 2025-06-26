@@ -1,8 +1,6 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import Header from "@/components/common/Header"
-import Footer from "@/components/common/Footer"
+import { useRouter } from "next/navigation" 
 import GalleryDetailHero from "./components/GalleryDetailHero"
 import GalleryDetailSpecs from "./components/GalleryDetailSpecs"
 import GalleryDetailProcess from "./components/GalleryDetailProcess"
@@ -20,14 +18,12 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
   if (loading) {
     return (
       <div className="min-h-screen">
-        <Header />
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-foreground/60">実績詳細を読み込み中...</p>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
@@ -35,7 +31,6 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
   if (error) {
     return (
       <div className="min-h-screen">
-        <Header />
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="text-6xl text-red-500/20 mb-4">⚠️</div>
@@ -61,7 +56,6 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
@@ -69,7 +63,6 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
   if (!item) {
     return (
       <div className="min-h-screen">
-        <Header />
         <div className="flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="text-6xl text-foreground/20 mb-4">😔</div>
@@ -87,19 +80,16 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
             </button>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
     <div className="min-h-screen">
-      <Header />
       <GalleryDetailHero item={item} />
       <GalleryDetailSpecs item={item} />
       <GalleryDetailProcess />
       <GalleryDetailCTA />
-      <Footer />
     </div>
   )
 }

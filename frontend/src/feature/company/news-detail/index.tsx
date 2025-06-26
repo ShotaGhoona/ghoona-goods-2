@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import Header from "@/components/common/Header"
-import Footer from "@/components/common/Footer"
 import { useNewsDetail, useRelatedNews } from "@/hooks/useNews"
 import { getCategoryColor, formatNewsDate, formatReadTime, formatViewCount } from "@/constants/news"
 
@@ -40,8 +38,6 @@ export default function NewsDetail({ newsId }: NewsDetailProps) {
 
   return (
     <div className="min-h-screen">
-      <Header />
-      
       {/* Loading state */}
       {loading && (
         <div className="flex justify-center items-center min-h-[400px]">
@@ -298,8 +294,6 @@ export default function NewsDetail({ newsId }: NewsDetailProps) {
           </div>
         </article>
       )}
-      
-      <Footer />
     </div>
   )
 }

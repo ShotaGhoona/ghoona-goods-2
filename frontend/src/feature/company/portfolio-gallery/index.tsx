@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
 import GalleryHero from "./components/GalleryHero";
 import GalleryFilter from "./components/GalleryFilter";
 import GalleryGrid from "./components/GalleryGrid";
@@ -16,7 +14,6 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen">
-      <Header />
       <GalleryHero />
       <GalleryStats />
       <GalleryFilter 
@@ -35,7 +32,6 @@ export default function Gallery() {
         selectedIndustry={selectedIndustry}
         searchTerm={searchTerm}
       />
-      <Footer />
     </div>
   );
 }
