@@ -65,6 +65,7 @@ export interface PortfolioFilterParams {
   search?: string;
   sort_by?: string;
   sort_order?: 'asc' | 'desc';
+  [key: string]: unknown;
 }
 
 export interface PaginationMeta {

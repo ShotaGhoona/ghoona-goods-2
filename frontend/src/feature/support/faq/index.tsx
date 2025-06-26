@@ -25,7 +25,6 @@ export default function FAQ() {
 
   const handleCategorySelect = (categoryId: string | null) => {
     setSelectedCategory(categoryId)
-    setIsSearching(false)
     setSearchResults(faqData)
   }
 

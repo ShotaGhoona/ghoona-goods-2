@@ -63,7 +63,7 @@ export interface NewsItem {
   tags?: string[];
 }
 
-export interface NewsDetail extends NewsItem {
+export interface NewsDetail extends Omit<NewsItem, 'tags'> {
   images: NewsImage[];
   tags: NewsTag[];
 }
@@ -77,6 +77,7 @@ export interface NewsFilterParams {
   featured?: boolean;
   sort_by?: 'published_at' | 'view_count' | 'created_at';
   sort_order?: 'asc' | 'desc';
+  [key: string]: unknown;
 }
 
 export interface PaginationMeta {

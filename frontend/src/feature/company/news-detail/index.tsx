@@ -125,15 +125,15 @@ export default function NewsDetail({ newsId }: NewsDetailProps) {
                     key={tag.id || index}
                     className="px-3 py-1 bg-card/50 text-foreground/70 rounded-full text-sm border border-border/30"
                   >
-                    #{tag.tag_name || tag}
+                    #{typeof tag === "string" ? tag : tag.tag_name}
                   </span>
                 )) || (
                   newsData.tags && Array.isArray(newsData.tags) && newsData.tags.map((tag, index) => (
-                    <span 
+                    <span
                       key={index}
                       className="px-3 py-1 bg-card/50 text-foreground/70 rounded-full text-sm border border-border/30"
                     >
-                      #{tag}
+                      #{typeof tag === "string" ? tag : tag.tag_name}
                     </span>
                   ))
                 )}

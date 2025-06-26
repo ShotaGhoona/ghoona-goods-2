@@ -97,7 +97,7 @@ export default function GalleryDetail({ id }: GalleryDetailProps) {
       <Header />
       <GalleryDetailHero item={item} />
       <GalleryDetailSpecs item={item} />
-      <GalleryDetailProcess item={item} />
+      <GalleryDetailProcess />
       <GalleryDetailCTA />
       <Footer />
     </div>
