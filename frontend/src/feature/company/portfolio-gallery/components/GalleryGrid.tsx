@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { usePortfolios } from "@/hooks/usePortfolio"
-import { Portfolio, PortfolioFilterParams } from "@/types/portfolio"
+import { PortfolioFilterParams } from "@/types/portfolio"
 
 interface GalleryGridProps {
   selectedCategory?: string
