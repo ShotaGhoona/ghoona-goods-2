@@ -1,0 +1,299 @@
+-- Insert news images based on frontend dummy data and content
+INSERT INTO news_images (
+    id,
+    news_id,
+    image_url,
+    alt_text,
+    caption,
+    sort_order,
+    image_type,
+    created_at,
+    updated_at
+) VALUES 
+-- Images for: 新型アクリルスタンドシリーズ発売開始
+(
+    '750e8400-e29b-41d4-a716-446655440001',
+    '550e8400-e29b-41d4-a716-446655440001',
+    'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=600&fit=crop&crop=center',
+    '新型アクリルスタンドの製品画像',
+    'より耐久性の高い新素材を使用した新型アクリルスタンド',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440002',
+    '550e8400-e29b-41d4-a716-446655440001',
+    'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&crop=center',
+    'アクリルスタンドの製造工程',
+    '最新設備での精密加工の様子',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440003',
+    '550e8400-e29b-41d4-a716-446655440001',
+    'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=800&h=600&fit=crop&crop=center',
+    '品質検査の様子',
+    '従来品と比べて40%向上した強度をテスト中',
+    3,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 大口注文キャンペーン実施中
+(
+    '750e8400-e29b-41d4-a716-446655440004',
+    '550e8400-e29b-41d4-a716-446655440002',
+    'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=1200&h=600&fit=crop&crop=center',
+    '大口注文キャンペーンのイメージ',
+    '法人様向けの特別プランをご用意',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440005',
+    '550e8400-e29b-41d4-a716-446655440002',
+    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=600&fit=crop&crop=center',
+    '大量生産ラインの様子',
+    '10,000個以上の大口注文にも対応可能な生産体制',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: エコ素材缶バッジの開発完了
+(
+    '750e8400-e29b-41d4-a716-446655440006',
+    '550e8400-e29b-41d4-a716-446655440003',
+    'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200&h=600&fit=crop&crop=center',
+    'エコ素材で作られた缶バッジ',
+    '環境に配慮したリサイクル可能な新素材を100%使用',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440007',
+    '550e8400-e29b-41d4-a716-446655440003',
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&crop=center',
+    'リサイクル素材の原料',
+    '環境に優しい生分解性プラスチックを採用',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440008',
+    '550e8400-e29b-41d4-a716-446655440003',
+    'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop&crop=center',
+    '環境認証マーク',
+    '各種環境認証を取得した安心・安全な製品',
+    3,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 3D印刷技術の導入について
+(
+    '750e8400-e29b-41d4-a716-446655440009',
+    '550e8400-e29b-41d4-a716-446655440004',
+    'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=1200&h=600&fit=crop&crop=center',
+    '3D印刷機で製作中の試作品',
+    '最新の3D印刷技術で開発期間を50%短縮',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440010',
+    '550e8400-e29b-41d4-a716-446655440004',
+    'https://images.unsplash.com/photo-1562408590-063ec51d0773?w=800&h=600&fit=crop&crop=center',
+    '高精度レジン3Dプリンター',
+    '細かなディテールまで再現可能な高精度機器',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440011',
+    '550e8400-e29b-41d4-a716-446655440004',
+    'https://images.unsplash.com/photo-1593510987185-1cdc3a4b84b8?w=800&h=600&fit=crop&crop=center',
+    '3D印刷による試作品',
+    'デザイン検証用のモックアップを迅速作成',
+    3,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: オンライン工場見学会開催
+(
+    '750e8400-e29b-41d4-a716-446655440012',
+    '550e8400-e29b-41d4-a716-446655440005',
+    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop&crop=center',
+    'オンライン工場見学会のイメージ',
+    'ライブ配信で製造プロセスをご紹介',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440013',
+    '550e8400-e29b-41d4-a716-446655440005',
+    'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&h=600&fit=crop&crop=center',
+    '製造ラインの全景',
+    '缶バッジからアクリルまで一貫した製造体制',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 夏季休業のご案内
+(
+    '750e8400-e29b-41d4-a716-446655440014',
+    '550e8400-e29b-41d4-a716-446655440006',
+    'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=600&fit=crop&crop=center',
+    '夏季休業のお知らせ',
+    '8月10日〜18日まで夏季休業いたします',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+
+-- Images for: UV印刷技術の向上について
+(
+    '750e8400-e29b-41d4-a716-446655440015',
+    '550e8400-e29b-41d4-a716-446655440007',
+    'https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=1200&h=600&fit=crop&crop=center',
+    'UV印刷機での印刷作業',
+    '色再現性30%向上の最新UV印刷技術',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440016',
+    '550e8400-e29b-41d4-a716-446655440007',
+    'https://images.unsplash.com/photo-1574482620283-1a9ab1d07f30?w=800&h=600&fit=crop&crop=center',
+    '印刷品質比較',
+    '従来技術（左）と新技術（右）の印刷品質比較',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 品質管理システムのアップデート
+(
+    '750e8400-e29b-41d4-a716-446655440017',
+    '550e8400-e29b-41d4-a716-446655440008',
+    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=600&fit=crop&crop=center',
+    'AI品質管理システムの画面',
+    'AI技術による自動検査で99.5%の検査精度を実現',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440018',
+    '550e8400-e29b-41d4-a716-446655440008',
+    'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center',
+    '自動検査装置',
+    '画像認識技術による全数検査システム',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 第5回展示会出展のお知らせ
+(
+    '750e8400-e29b-41d4-a716-446655440019',
+    '550e8400-e29b-41d4-a716-446655440009',
+    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop&crop=center',
+    '展示会ブースの様子',
+    '東京ビッグサイトW-45ブースでお待ちしています',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440020',
+    '550e8400-e29b-41d4-a716-446655440009',
+    'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop&crop=center',
+    '新商品展示コーナー',
+    '最新のアクリルスタンドシリーズを展示',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 春の新規お客様キャンペーン
+(
+    '750e8400-e29b-41d4-a716-446655440021',
+    '550e8400-e29b-41d4-a716-446655440010',
+    'https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=1200&h=600&fit=crop&crop=center',
+    '春のキャンペーンイメージ',
+    '新規のお客様限定20%オフキャンペーン実施中',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+
+-- Images for: カスタムキーホルダー新デザイン
+(
+    '750e8400-e29b-41d4-a716-446655440022',
+    '550e8400-e29b-41d4-a716-446655440011',
+    'https://images.unsplash.com/photo-1563198804-b144dfc1661c?w=1200&h=600&fit=crop&crop=center',
+    '新デザインのカスタムキーホルダー',
+    '50種類の新デザインテンプレートを追加',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+),
+(
+    '750e8400-e29b-41d4-a716-446655440023',
+    '550e8400-e29b-41d4-a716-446655440011',
+    'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop&crop=center',
+    'デザインテンプレート一覧',
+    'アニメ・企業・イベント用など多彩なカテゴリー',
+    2,
+    'content',
+    NOW(),
+    NOW()
+),
+
+-- Images for: 配送料金改定のお知らせ
+(
+    '750e8400-e29b-41d4-a716-446655440024',
+    '550e8400-e29b-41d4-a716-446655440012',
+    'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&h=600&fit=crop&crop=center',
+    '配送トラックのイメージ',
+    '物流コスト上昇に伴う配送料金改定のお知らせ',
+    1,
+    'featured',
+    NOW(),
+    NOW()
+);
