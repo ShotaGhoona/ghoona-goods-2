@@ -29,29 +29,34 @@ export default function RefinedHeader() {
         {/* 洗練されたロゴ */}
         <Link href="/" className="flex items-center space-x-3 group">
           <Image src="/logo.png" alt="ZIGZAGLAB" width={36} height={36} />
-          <span className="text-2xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary">
-            ZIGZAGLab
-          </span>  
+          <Image src="/logo-text.png" alt="ZIGZAGLAB" width={150} height={50} />
+          
         </Link>
 
         {/* エレガントなナビゲーション */}
-        {/* <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8">
           {[
-            { name: "商品一覧", href: "#products" },
-            { name: "私たちについて", href: "#about" },
-            { name: "お知らせ", href: "#news" },
-            { name: "よくある質問", href: "#faq" },
+            { name: "強み", href: "#strengths-section" },
+            { name: "品質", href: "#quality-section" },
+            { name: "グッズ", href: "#integrated-product-section" },
+            { name: "プロセス", href: "#process-section" },
+            { name: "お問い合わせ", href: "#contact-section" },
           ].map((item) => (
-            <Link 
+            <a 
               key={item.name}
-              href={item.href}
               className="relative text-foreground/80 hover:text-foreground transition-colors duration-300 text-sm font-medium py-2 group"
+              onClick={() => {
+                const section = document.getElementById(item.href.replace('#', ''))
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
             >
               {item.name}
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></div>
-            </Link>
+            </a>
           ))}
-        </nav> */}
+        </nav>
 
         {/* 洗練されたアクションボタン */}
         <div className="flex items-center space-x-3">
@@ -65,6 +70,12 @@ export default function RefinedHeader() {
           <Button 
             size="sm"
             className="text-sm font-medium bg-primary hover:bg-primary/90 transition-all duration-300"
+            onClick={() => {
+              const section = document.getElementById('contact-section')
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
           >
             お問い合わせ
           </Button>

@@ -3,12 +3,12 @@ import StrengthsSection from "./components/StrengthsSection";
 import QualityShowcase from "./components/QualityShowcase";
 import IntegratedProductSection from "./components/IntegratedProductSection";
 import ProcessSection from "./components/ProcessSection";
-import HeroSection05 from "./components/HeroSection05";
+import HeroSection from "./components/HeroSection";
 
 export default function Index() {
   return (
     <div className="min-h-screen">
-      <HeroSection05 />
+      <HeroSection />
       <StrengthsSection />
       <QualityShowcase />
       <IntegratedProductSection />

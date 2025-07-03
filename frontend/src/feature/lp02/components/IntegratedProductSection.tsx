@@ -108,27 +108,10 @@ export default function IntegratedProductSection() {
 
         {/* 商品詳細セクション */}
         <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* 左側：商品画像 */}
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 relative group">
-                <img 
-                  src={currentProduct.image}
-                  alt={currentProduct.name}
-                  className="w-full h-full object-cover transition-all duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-              </div>
-            </div>
+
 
             {/* 右側：商品説明 */}
             <div>
-              <h3 className="text-4xl font-light text-foreground mb-4">
-                {currentProduct.name}
-              </h3>
-              <p className="text-lg text-foreground/70 leading-relaxed mb-8 font-light">
-                {currentProduct.description}
-              </p>
 
               {/* ナビゲーションボタン */}
               <div className="flex items-center justify-between mb-8">
@@ -138,22 +121,43 @@ export default function IntegratedProductSection() {
                 >
                   ← 前の商品
                 </button>
-                
-                <div className="text-center">
-                  <p className="text-sm text-foreground/60 mb-1">
-                    {selectedProductIndex + 1} / {currentProducts.length}
+                <div className="flex flex-col items-center justify-center">
+
+                  <h3 className="text-4xl font-light text-foreground mb-4">
+                    {currentProduct.name}
+                  </h3>
+                  <p className="text-lg text-foreground/70 leading-relaxed mb-8 font-light">
+                    {currentProduct.description}
                   </p>
-                  <div className="flex space-x-1">
-                    {currentProducts.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                          index === selectedProductIndex ? 'bg-primary' : 'bg-foreground/20'
-                        }`}
+                  {/* 左側：商品画像 */}
+                  <div className="relative">
+                    <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 relative group">
+                      <img 
+                        src={currentProduct.image}
+                        alt={currentProduct.name}
+                        className="w-full h-full object-cover transition-all duration-500"
                       />
-                    ))}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-5 mt-5">
+                    <p className="text-sm text-foreground/60 mb-1">
+                      {selectedProductIndex + 1} / {currentProducts.length}
+                    </p>
+                    <div className="flex space-x-1">
+                      {currentProducts.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            index === selectedProductIndex ? 'bg-primary' : 'bg-foreground/20'
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
+                
 
                 <button
                   onClick={handleNext}
@@ -163,19 +167,10 @@ export default function IntegratedProductSection() {
                 </button>
               </div>
 
-              {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-10 py-4 bg-primary text-primary-foreground rounded-lg font-medium text-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105">
-                  この商品で見積もり
-                </button>
-                <button className="px-10 py-4 border border-primary/30 text-primary rounded-lg font-medium text-lg hover:bg-primary/10 transition-all duration-300 hover:scale-105">
-                  詳細資料をダウンロード
-                </button>
-              </div>
             </div>
           </div>
         </div>
-      </div>
+
 
       {/* 背景装飾 */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
