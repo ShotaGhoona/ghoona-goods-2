@@ -1,0 +1,18 @@
+{
+  "id": "002",
+  "slug": "ghoonagoods-corporate-site",
+  "name": "GhoonaGoods コーポレートサイト",
+  "type": "Corporate Web Platform",
+  "year": "2024",
+  "description": "Next.js 15とTailwind CSS v4で構築されたモダンなオリジナルグッズ製作企業のコーポレートサイト。高度なテーマシステム基盤、豊富なカスタムアニメーション、包括的なSEO最適化を実装。",
+  "detailedDescription": "機構部品メーカーの技術力を Web に昇華させた、エンジニアリング精度とデザイン感性が美しく融合したコーポレートプラットフォーム。「1個から対応する小ロット生産」という企業理念を、文字通り1ピクセルから丁寧に構築された UI/UX で表現しています。\n\nフロントエンドアーキテクチャは製造業の品質管理思想そのもの──Next.js 15 App Router による静的生成最適化、React 19 の最新機能活用、TypeScript による型安全な開発プロセス。全てがISO品質基準のような厳格さで設計されています。しかし、ここで差別化されるのは技術選択の先進性です。Tailwind CSS v4 という最新リリースを採用し、CSS Variables ベースの完全なテーマシステム基盤を構築──ダーク・ライト両モード対応の準備が整っているのに、UI切り替え機能は意図的に実装していません。これはミニマリズムの美学です。\n\n最も印象的なのは、カスタムアニメーションライブラリです。`float-slow`、`gradient-shift`、`morph`、`pulse-glow`──これらのキーフレームアニメーションは、単なる装飾ではなく「精密加工されたグッズが持つ質感」をデジタル空間で再現する試みです。8秒間のスロー浮遊アニメーションは、実際の缶バッジが手のひらで踊るような微細な動きを表現しています。\n\nSEO実装も製造業らしい網羅性を誇ります。OpenGraph、Twitter Card、構造化データ、メタデータ──検索エンジンという「品質検査システム」に対して、製品仕様書のような完璧な情報を提供します。sitemap.xml や robots.txt も、部品図面のような精密さで設計されているでしょう。\n\nコンポーネントアーキテクチャは shadcn/ui + Radix UI による enterprise-grade な構成。各コンポーネントは単一責任原則に従い、再利用可能でテスト可能、そして何より「美しい」。feature-based なディレクトリ構造は、工場の生産ラインのような効率的な情報フローを実現しています。\n\nこのサイトが証明するのは、「製造業のデジタル変革」は単なる IT 導入ではなく、物理世界で培った品質思想をデジタル体験に昇華させることだということです。1つの缶バッジを完璧に作り上げる技術力が、1つの Web サイトを完璧に作り上げる技術力と本質的に同じであることを、コードレベルで実証しています。",
+  "tech": ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS v4", "Radix UI", "shadcn/ui", "Lucide React", "Turbopack"],
+  "metrics": ["App Router最適化", "CSS Variables テーマ基盤", "カスタムアニメーション", "完全SEO対応"],
+  "status": "Production",
+  "technicalDetails": {
+    "architecture": "Next.js 15 App Router + CSS Variables ベーステーマシステムによる静的生成最適化",
+    "performance": "Turbopack + React 19 最新機能でCore Web Vitals最適化、カスタムCSSアニメーション統合",
+    "scalability": "Feature-based コンポーネント設計、shadcn/ui + Radix UI による enterprise-grade アーキテクチャ",
+    "monitoring": "包括的SEO実装（OGP、Twitter Card、構造化データ）、製造業品質基準レベルのメタデータ管理"
+  }
+}
