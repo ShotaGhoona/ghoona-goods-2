@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa"
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,38 +25,6 @@ export default function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
-  const contactMethods = [
-    {
-      icon: <FaPhone className="w-8 h-8" />,
-      title: "お電話でのお問い合わせ",
-      main: "03-1234-5678",
-      sub: "平日 9:00-18:00（土日祝除く）",
-      bgGradient: "from-blue-500/20 via-cyan-400/15 to-blue-600/20",
-      borderColor: "border-blue-500/30",
-      hoverBg: "hover:bg-blue-50/50",
-      accentColor: "text-blue-700"
-    },
-    {
-      icon: <FaEnvelope className="w-8 h-8" />,
-      title: "メールでのお問い合わせ",
-      main: "info@zigzaglab.com",
-      sub: "24時間受付（返信は営業時間内）",
-      bgGradient: "from-emerald-500/20 via-green-400/15 to-emerald-600/20",
-      borderColor: "border-emerald-500/30",
-      hoverBg: "hover:bg-emerald-50/50",
-      accentColor: "text-emerald-700"
-    },
-    {
-      icon: <FaMapMarkerAlt className="w-8 h-8" />,
-      title: "所在地",
-      main: "東京都千代田区千代田1-1-1",
-      sub: "グーナビル 5F",
-      bgGradient: "from-purple-500/20 via-violet-400/15 to-purple-600/20",
-      borderColor: "border-purple-500/30",
-      hoverBg: "hover:bg-purple-50/50",
-      accentColor: "text-purple-700"
-    }
-  ]
 
   return (
     <section 
