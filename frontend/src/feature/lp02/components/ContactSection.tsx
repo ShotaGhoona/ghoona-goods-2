@@ -2,8 +2,30 @@
 
 import { useEffect, useState } from "react"
 
+interface FormData {
+  name: string
+  company: string
+  email: string
+  phone: string
+  category: string
+  message: string
+}
+
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    category: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null
+    message: string
+  }>({ type: null, message: '' })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,6 +46,59 @@ export default function ContactSection() {
 
     return () => observer.disconnect()
   }, [])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: result.message || 'お問い合わせを送信しました！'
+        })
+        setFormData({
+          name: '',
+          company: '',
+          email: '',
+          phone: '',
+          category: '',
+          message: ''
+        })
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || '送信に失敗しました。'
+        })
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'ネットワークエラーが発生しました。もう一度お試しください。'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
 
   return (
@@ -55,14 +130,29 @@ export default function ContactSection() {
               </p>
             </div>
 
-            <form className="space-y-6">
+            {/* ステータスメッセージ */}
+            {submitStatus.type && (
+              <div className={`p-4 rounded-xl mb-6 ${
+                submitStatus.type === 'success' 
+                  ? 'bg-green-50 text-green-800 border border-green-200' 
+                  : 'bg-red-50 text-red-800 border border-red-200'
+              }`}>
+                {submitStatus.message}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     お名前 <span className="text-red-500">*</span>
                   </label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
                     placeholder="山田 太郎"
                   />
@@ -72,7 +162,11 @@ export default function ContactSection() {
                     会社名（個人事業主の場合は個人とご記入ください） <span className="text-red-500">*</span>
                   </label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
                     placeholder="株式会社サンプル"
                   />
@@ -85,7 +179,11 @@ export default function ContactSection() {
                     メールアドレス <span className="text-red-500">*</span>
                   </label>
                   <input 
-                    type="email" 
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
                     placeholder="example@company.com"
                   />
@@ -95,7 +193,10 @@ export default function ContactSection() {
                     電話番号
                   </label>
                   <input 
-                    type="tel" 
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
                     placeholder="03-1234-5678"
                   />
@@ -106,7 +207,12 @@ export default function ContactSection() {
                 <label className="block text-sm font-medium text-foreground mb-2">
                   商品カテゴリ
                 </label>
-                <select className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300">
+                <select 
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300"
+                >
                   <option value="">選択してください</option>
                   <option value="can-badge">缶バッジ</option>
                   <option value="acrylic">アクリルグッズ</option>
@@ -120,6 +226,10 @@ export default function ContactSection() {
                   お問い合わせ内容 <span className="text-red-500">*</span>
                 </label>
                 <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
                   rows={6}
                   className="w-full px-4 py-3 bg-background/50 border border-border/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 resize-none"
                   placeholder="お問い合わせ内容をお書きください。"
@@ -129,9 +239,10 @@ export default function ContactSection() {
               <div className="text-center">
                 <button 
                   type="submit"
-                  className="px-12 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-primary/30"
+                  disabled={isSubmitting}
+                  className="px-12 py-4 bg-primary text-primary-foreground rounded-xl font-medium text-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  お問い合わせを送信する
+                  {isSubmitting ? '送信中...' : 'お問い合わせを送信する'}
                 </button>
                 <p className="text-xs text-foreground/60 mt-4 font-light">
                   送信いただいた内容は、営業時間内にご返信いたします。

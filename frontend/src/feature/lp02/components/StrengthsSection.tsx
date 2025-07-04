@@ -40,13 +40,13 @@ export default function StrengthsSection() {
         <div className="relative">
           <div className="w-24 h-24 bg-gradient-to-br from-red-500 via-white to-red-500 rounded-3xl flex items-center justify-center shadow-2xl border-4 border-red-600/30">
             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-              <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm font-bold">日</span>
-              </div>
+              <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M477.336,118.683l-150.39,106.525V118.683L170.01,229.844L156.936,27.133H26.147L0,484.867h512 L477.336,118.683z M194.65,369.543h-61.77v-61.779h61.77V369.543z M370.108,369.543H308.32v-61.779h61.788V369.543z" fill="#40C7A4" />
+              </svg>
             </div>
           </div>
           <div className="absolute -top-2 -right-2 w-10 h-6 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-white text-xs font-bold">🏭</span>
+            <span className="text-white text-xs font-bold">🇯🇵</span>
           </div>
           <div className="absolute -bottom-3 -left-3 w-8 h-8 bg-red-300/70 rounded-full blur-md animate-pulse"></div>
           <div className="absolute top-0 left-0 w-6 h-6 bg-white/80 rounded-full animate-ping"></div>
@@ -67,14 +67,10 @@ export default function StrengthsSection() {
       icon: (
         <div className="relative">
           <div className="w-24 h-24 bg-gradient-to-br from-blue-400 via-cyan-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl">
-            <div className="relative">
-              {/* 数量を表現する積み重なったアイコン */}
-              <div className="flex items-end space-x-1">
-                <div className="w-3 h-8 bg-white/90 rounded-sm animate-pulse"></div>
-                <div className="w-3 h-12 bg-white/80 rounded-sm animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                <div className="w-3 h-16 bg-white/90 rounded-sm animate-pulse" style={{animationDelay: '0.4s'}}></div>
-                <div className="w-3 h-10 bg-white/70 rounded-sm animate-pulse" style={{animationDelay: '0.6s'}}></div>
-              </div>
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+              <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                <path d="M255.987,18.171L142.352,61.122L89.121,81.226L0,114.966v68.059V397.06l255.987,96.768l6.23-2.35L512,397.042 V114.949L255.987,18.171z M244.22,451.679L35.28,372.7V183.025v-43.698l57.013-21.588v61.757l59.358-8.408V95.323l3.168-1.197 l89.4-33.778V451.679z M476.72,372.673l-208.976,79.006V60.348l208.976,78.979V372.673z" fill="#40C7A4" />
+              </svg>
             </div>
           </div>
           <div className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-1.5 rounded-full shadow-lg">
@@ -99,15 +95,13 @@ export default function StrengthsSection() {
       icon: (
         <div className="relative">
           <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 via-green-500 to-emerald-600 rounded-3xl flex items-center justify-center shadow-2xl">
-            <div className="relative">
-              {/* 商品とパッケージを表現 */}
-              <div className="w-10 h-8 bg-white/90 rounded-lg flex items-center justify-center">
-                <div className="w-6 h-4 bg-emerald-500/80 rounded-sm"></div>
-              </div>
-              <div className="absolute -top-2 -left-2 w-8 h-6 bg-white/70 rounded-md border-2 border-emerald-400/50 flex items-center justify-center">
-                <div className="w-4 h-2 bg-emerald-400/60 rounded-sm"></div>
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-5 bg-white/60 rounded-lg border border-emerald-300/40"></div>
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+              <svg className="w-8 h-8" viewBox="0 0 512 512" fill="currentColor">
+                <rect x="168.084" y="335.709" width="175.831" height="20.29" fill="#40C7A4" />
+                <rect x="168.084" y="387.871" width="175.831" height="20.29" fill="#40C7A4" />
+                <rect x="168.084" y="434.242" width="83.085" height="20.29" fill="#40C7A4" />
+                <path d="M488.338,163.731c-8.009-8.029-19.199-13.028-31.44-13.028h-47.304V78.276L331.319,0h-4.798H102.405v150.703 H55.102c-12.253,0-23.44,5-31.448,13.028c-8.02,8.013-13.02,19.199-13.012,31.436v169.958 c-0.008,12.245,4.983,23.432,13.012,31.453c8.017,8.012,19.208,13.02,31.448,13.004h47.303V512h307.189V409.582h47.304 c12.233,0.016,23.419-4.992,31.428-13.004c8.033-7.996,13.04-19.2,13.033-31.453V195.168 C501.366,182.922,496.359,171.744,488.338,163.731z M324.587,26.048l57.024,57.041h-57.024V26.048z M386.409,488.819H125.59V398 h-0.012v-94.655H386.4v106.238h0.008V488.819z M335.813,230.287c0-9.216,7.475-16.679,16.675-16.679 c9.216,0,16.679,7.463,16.679,16.679c0,9.208-7.463,16.671-16.679,16.671C343.289,246.958,335.813,239.495,335.813,230.287z M386.409,150.703H125.59V23.189h175.811v83.074h85.007V150.703z M423.467,246.958c-9.204,0-16.667-7.463-16.667-16.671 c0-9.216,7.463-16.679,16.667-16.679c9.212,0,16.675,7.463,16.675,16.679C440.142,239.495,432.679,246.958,423.467,246.958z" fill="#40C7A4" />
+              </svg>
             </div>
           </div>
           <div className="absolute -top-3 -left-3 w-8 h-6 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg transform rotate-12 shadow-md flex items-center justify-center">

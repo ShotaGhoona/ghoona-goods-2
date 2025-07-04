@@ -74,27 +74,27 @@ export default function IntegratedProductSection() {
   return (
     <section 
       id="integrated-product-section"
-      className="py-24 px-6 bg-gradient-to-b from-primary/3 to-background relative overflow-hidden"
+      className="py-12 md:py-16 lg:py-24 px-4 md:px-6 bg-gradient-to-b from-primary/3 to-background relative overflow-hidden"
     >
       <div className="container mx-auto max-w-7xl">
         {/* セクションヘッダー */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-5xl md:text-6xl font-light text-foreground mb-6">
+        <div className={`text-center mb-12 md:mb-16 lg:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-4 md:mb-6">
             ZIGZAG<span className="font-bold text-primary">グッズ紹介</span>
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto font-light leading-relaxed px-4">
             機構部品メーカーの技術力で作り上げる、高品質なオリジナルグッズ
           </p>
         </div>
 
         {/* カテゴリ選択タブ */}
-        <div className={`flex justify-center mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex bg-card/30 backdrop-blur-sm rounded-2xl border border-border/20 p-2">
+        <div className={`flex justify-center mb-8 md:mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex flex-col sm:flex-row bg-card/30 backdrop-blur-sm rounded-2xl border border-border/20 p-2 w-full max-w-md sm:max-w-none">
             {Object.keys(productCategories).map((category) => (
               <button
                 key={category}
                 onClick={() => handleCategoryChange(category)}
-                className={`px-8 py-4 rounded-xl font-medium text-lg transition-all duration-300 ${
+                className={`px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl font-medium text-sm sm:text-base md:text-lg transition-all duration-300 mb-2 sm:mb-0 ${
                   selectedCategory === category
                     ? 'bg-primary text-primary-foreground shadow-lg'
                     : 'text-foreground/70 hover:text-foreground hover:bg-foreground/5'
@@ -108,66 +108,65 @@ export default function IntegratedProductSection() {
 
         {/* 商品詳細セクション */}
         <div className={`transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* 商品画像 */}
+            <div className="relative order-1 lg:order-1">
+              <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 relative group">
+                <img 
+                  src={currentProduct.image}
+                  alt={currentProduct.name}
+                  className="w-full h-full object-cover transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+              </div>
+            </div>
 
-
-            {/* 右側：商品説明 */}
-            <div>
-
-              {/* ナビゲーションボタン */}
-              <div className="flex items-center justify-between mb-8">
-                <button
-                  onClick={handlePrevious}
-                  className="px-6 py-3 border border-foreground/20 text-foreground rounded-lg font-medium hover:bg-foreground/5 transition-all duration-300 hover:scale-105"
-                >
-                  ← 前の商品
-                </button>
-                <div className="flex flex-col items-center justify-center">
-
-                  <h3 className="text-4xl font-light text-foreground mb-4">
-                    {currentProduct.name}
-                  </h3>
-                  <p className="text-lg text-foreground/70 leading-relaxed mb-8 font-light">
-                    {currentProduct.description}
+            {/* 商品情報 */}
+            <div className="order-2 lg:order-2">
+              <div className="text-center lg:text-left">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-foreground mb-4">
+                  {currentProduct.name}
+                </h3>
+                <p className="text-base sm:text-lg text-foreground/70 leading-relaxed mb-8 font-light">
+                  {currentProduct.description}
+                </p>
+                
+                {/* インジケーター */}
+                <div className="flex items-center justify-center lg:justify-start gap-5 mb-8">
+                  <p className="text-sm text-foreground/60">
+                    {selectedProductIndex + 1} / {currentProducts.length}
                   </p>
-                  {/* 左側：商品画像 */}
-                  <div className="relative">
-                    <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-primary/5 relative group">
-                      <img 
-                        src={currentProduct.image}
-                        alt={currentProduct.name}
-                        className="w-full h-full object-cover transition-all duration-500"
+                  <div className="flex space-x-1">
+                    {currentProducts.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                          index === selectedProductIndex ? 'bg-primary' : 'bg-foreground/20'
+                        }`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-5 mt-5">
-                    <p className="text-sm text-foreground/60 mb-1">
-                      {selectedProductIndex + 1} / {currentProducts.length}
-                    </p>
-                    <div className="flex space-x-1">
-                      {currentProducts.map((_, index) => (
-                        <div
-                          key={index}
-                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                            index === selectedProductIndex ? 'bg-primary' : 'bg-foreground/20'
-                          }`}
-                        />
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 </div>
-                
-
-                <button
-                  onClick={handleNext}
-                  className="px-6 py-3 border border-foreground/20 text-foreground rounded-lg font-medium hover:bg-foreground/5 transition-all duration-300 hover:scale-105"
-                >
-                  次の商品 →
-                </button>
               </div>
-
             </div>
+          </div>
+
+          {/* ナビゲーションボタン */}
+          <div className="flex items-center justify-between mt-8 order-3">
+            <button
+              onClick={handlePrevious}
+              className="px-4 sm:px-6 py-3 border border-foreground/20 text-foreground rounded-lg font-medium hover:bg-foreground/5 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+            >
+              <span className="hidden sm:inline">← 前の商品</span>
+              <span className="sm:hidden">← 前</span>
+            </button>
+            <button
+              onClick={handleNext}
+              className="px-4 sm:px-6 py-3 border border-foreground/20 text-foreground rounded-lg font-medium hover:bg-foreground/5 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+            >
+              <span className="hidden sm:inline">次の商品 →</span>
+              <span className="sm:hidden">次 →</span>
+            </button>
           </div>
         </div>
 
@@ -176,6 +175,7 @@ export default function IntegratedProductSection() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/6 left-1/12 w-60 h-60 bg-gradient-to-r from-primary/15 via-secondary/10 to-primary/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/6 right-1/12 w-48 h-48 bg-gradient-to-r from-secondary/15 via-primary/10 to-secondary/15 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
       </div>
     </section>
   )
